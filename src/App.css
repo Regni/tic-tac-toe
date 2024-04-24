@@ -22,3 +22,7 @@
   margin: 1px;
   text-align: center;
 }
+
+.row{
+  display: flex;
+}
