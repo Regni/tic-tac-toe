@@ -2,6 +2,7 @@ import { useState } from 'react'
 import  GameButton  from "./components/GameButton.tsx"
 import { GameSquare } from './components/GameSquare.tsx'
 import './App.css'
+import PlayerInput from './components/PlayerInput.tsx'
 
 
 
@@ -13,14 +14,16 @@ function App() {
   const defaultSquares = Array(9).fill(null)
 
   const [squares, setSquares] = useState(defaultSquares)
-  const [xNext, setXNext] = useState(true)
+  const [xNext, setXNext] = useState<boolean>(true)
   
 const handleClick =(index : number): void=>{
+  if(squares[index]){
+    return
+  }
   const newGameState = squares.slice();
   newGameState[index] = xNext ? "X" :"O"
   setXNext(!xNext)
   setSquares(newGameState)
-  console.log(squares)
 }
 
 const handleRestart = () =>{
@@ -48,6 +51,9 @@ const handleRestart = () =>{
 </div>) : null } 
 
 <GameButton isFirstGame={isFirstGame} setIsFirstGame={setIsFirstGame} setGameStart={setGameStart} handleRestart={handleRestart}/>
+
+
+<PlayerInput/>
       
     </>
   )
