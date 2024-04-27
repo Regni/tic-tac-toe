@@ -3,6 +3,8 @@ import  GameButton  from "./components/GameButton.tsx"
 import { GameSquare } from './components/GameSquare.tsx'
 import './App.css'
 import PlayerInput from './components/PlayerInput.tsx'
+import { useWinner } from './components/useWinner.tsx'
+import WinnerDiv from './components/WinnerDiv.tsx'
 
 
 
@@ -29,9 +31,13 @@ const handleClick =(index : number): void=>{
 const handleRestart = () =>{
   setSquares(defaultSquares)
 }
+const winner = useWinner(squares)
+
+
 
   return (
     <>
+      {winner && (<WinnerDiv/>  )}
      {gameStart ? (<div className='gameContainer'>
       <div className="row">
   <GameSquare value={squares[0]} handleClick={() => handleClick(0)}/>
