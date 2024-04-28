@@ -9,6 +9,8 @@ interface typeProps{
 
 
 const PlayerInput = ({setPlayers}: typeProps) => {
+
+  //changes the names in the setplayer state so the game knows the players name.
   const handleChange = (e:any)=>{
     const name:string = e.target.value;
     const xo:string = e.target.id

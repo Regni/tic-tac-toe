@@ -9,12 +9,13 @@ interface Props{
 
 const GameButton = ({isFirstGame, setIsFirstGame, setGameStart, handleRestart}: Props) => {
 
+  //after Clicking start game, render field and start the game
   const handleClick = (e : any) => {
     setIsFirstGame(false); 
     setGameStart(true)
     e.target.blur();
   }
-
+//ends the game and resets to defaults, users will stay the same
   const handleEnd = ()=>{
     setIsFirstGame(true)
     setGameStart(false)

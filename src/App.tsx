@@ -16,26 +16,31 @@ function App() {
 
   const defaultSquares = Array(9).fill(null)
 
-  const [squares, setSquares] = useState(defaultSquares)
+  const [squares, setSquares] = useState<string[]>(defaultSquares)
   const [xNext, setXNext] = useState<boolean>(true)
   
+//handle the clicks on the squares  
 const handleClick =(index : number): void=>{
-  if(squares[index]){
+  //stop user input when there is a winner or the square has already a "x" or "o" in there.
+  if(squares[index] || winner){
     return
   }
+  //creates new array and update the square that is clicked
   const newGameState = squares.slice();
   newGameState[index] = xNext ? "X" :"O"
+  //changes the symbol for next player
   setXNext(!xNext)
+  //updates the state 
   setSquares(newGameState)
 }
-
+//Reset settings to start new game
 const handleRestart = () =>{
   setSquares(defaultSquares)
   setWinner("")
   setXNext(true)
 }
 
-
+//check if there is a winner and set the winner to announce the name
 useEffect(()=>{
   const winDecide = useWinner(squares)
 
