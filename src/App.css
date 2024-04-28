@@ -34,6 +34,24 @@
 
 .playerForm{
 margin-top: 1em;
+width: 250px;
   display: flex;
   flex-direction: column;
+  
+}
+
+.formElements{
+  display: flex;
+  justify-content: space-between;
+}
+
+.buttonContainer{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: center;
+}
+
+.buttonContainer > button{
+width: 150PX;
 }

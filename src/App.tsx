@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import  GameButton  from "./components/GameButton.tsx"
 import { GameSquare } from './components/GameSquare.tsx'
 import './App.css'
@@ -11,7 +11,8 @@ import WinnerDiv from './components/WinnerDiv.tsx'
 function App() {
   const [isFirstGame, setIsFirstGame] = useState<boolean>(true)
   const [gameStart, setGameStart] = useState<boolean>(false)
-
+  const [players, setPlayers] = useState({x: "player X", o: "player O"})
+  const [winner, setWinner] = useState<string>("")
 
   const defaultSquares = Array(9).fill(null)
 
@@ -30,14 +31,29 @@ const handleClick =(index : number): void=>{
 
 const handleRestart = () =>{
   setSquares(defaultSquares)
+  setWinner("")
+  setXNext(true)
 }
-const winner = useWinner(squares)
+
+
+useEffect(()=>{
+  const winDecide = useWinner(squares)
+
+  if(winDecide == "X"){
+    setWinner(players.x)
+  }
+  if(winDecide =="O"){
+    setWinner(players.o)
+  }
+
+},[squares])
+
 
 
 
   return (
     <>
-      {winner && (<WinnerDiv/>  )}
+      {winner && (<WinnerDiv win={winner}/>  )}
      {gameStart ? (<div className='gameContainer'>
       <div className="row">
   <GameSquare value={squares[0]} handleClick={() => handleClick(0)}/>
@@ -59,7 +75,7 @@ const winner = useWinner(squares)
 <GameButton isFirstGame={isFirstGame} setIsFirstGame={setIsFirstGame} setGameStart={setGameStart} handleRestart={handleRestart}/>
 
 
-<PlayerInput/>
+<PlayerInput setPlayers={setPlayers}/>
       
     </>
   )

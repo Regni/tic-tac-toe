@@ -15,9 +15,16 @@ const GameButton = ({isFirstGame, setIsFirstGame, setGameStart, handleRestart}: 
     e.target.blur();
   }
 
+  const handleEnd = ()=>{
+    setIsFirstGame(true)
+    setGameStart(false)
+    handleRestart
+  }
+
   
   return (
-    isFirstGame? <button onClick={handleClick}>Start Game</button> : <button onClick={handleRestart}>Restart game</button>  )
+    isFirstGame? <button onClick={handleClick}>Start Game</button> : <div className="buttonContainer"><button onClick={handleRestart}>Restart game</button>
+    <button onClick={handleEnd}>end game</button></div>  )
 }
 
 export default GameButton

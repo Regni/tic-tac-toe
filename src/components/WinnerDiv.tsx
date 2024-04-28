@@ -1,8 +1,11 @@
-import React from 'react'
 
-const WinnerDiv = () => {
+interface typeProps{
+  win: string
+}
+
+const WinnerDiv = ({win}:typeProps) => {
   return (
-    <h1>Winner!</h1>
+    <h1>{win} is the winner!</h1>
   )
 }
 
